@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registration Form</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <style>
+            .container{
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                height:100vh;
+                padding:10px;
+                box-sizing:border-box;
+            }
+            .card{
+                max-width:700px;
+                min-height:400px;
+                width:100%;
+                margin:0 auto;
+                padding:20px 30px;
+                background-color:#f9f9f9;
+                border-radius:10px;
+                box-shadow:0 0 10px rgba(0, 0, 0, 0.385);
+                display:flex;
+                flex-direction:row;
+                overflow:hidden;
+            }
+            .form-section{
+                flex:1;
+                padding:20px;
+            }
+            .form-section h1{
+                color:black;
+                font-size:24px;
+                font-family: Arial;
+                
+            }
+            .image-section{
+                flex:1;
+                display:flex;
+                justify-content:center;
+                flex-direction:column;
+                align-items:center;
+                padding-right:20px;
+            }
+            .large-screen{
+                display: block;
+            }
+            .small-screen {
+                display: none;
+            }
+            .image-section img{
+                width:100%;
+                max-width:300px;
+                height:auto;
+                margin-bottom:20px;
+            }
+            .image-section a{
+                margin-top:10px;
+                font-size:14px;
+                font-family:arial;
+            }
+
+            body{
+                background-color: white;
+                
+            }
+            
+            .terms{
+                font-family:arial;
+                font-size:14px;
+            }
+            .input-container{
+                display:flex;
+                align-items:center;
+                padding:10px 0;
+            }
+           .input-container input{
+                flex:1;
+                padding:10px;
+            }
+            input[type="text"],input[type="email"],input[type="password"]{
+                width:100%;
+                border:none;
+                border-bottom:2px solid #ccc;
+                outline:none;
+                text-align:left;
+                background-color:transparent;
+                
+                
+            }
+            input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    -webkit-text-fill-color: #000 !important; /* or your text color */
+    transition: background-color 5000s ease-in-out 0s;
+}
+            
+            .message{
+                font-weight:bold;
+                padding:10px;
+                margin-top:10px;
+            }
+            .success{
+                color:green;
+            }
+            .error{
+                color:red;
+            }
+            button{
+                margin-top:10px;
+                background-color: #00a6ff;
+                border:none;
+                padding:12px;
+                border-radius:5px;
+                width:100px;
+                color:white;
+                cursor:pointer;
+                font-size:16px;
+            }
+            
+            a{
+                color:black;
+                font-family:arial;
+            }
+            form p{
+                font-family:arial;
+                margin:25px 0;
+            }
+            @media (max-width: 768px) {
+                .card {
+                    flex-direction: column;
+                    max-width: 90%;
+                    padding: 20px;
+                }
+
+                .image-section {
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+                .image-section img {
+                    max-width: 100%;
+                    height: auto;
+                }
+                .form-section {
+                    padding: 0;
+                }
+            }
+            @media (max-width: 480px) {
+                .form-section h1 {
+                    font-size: 22px;
+                }
+                input[type="email"],input[type="password"] {
+                    width: 100%;
+                    font-size: 16px;
+                }
+                .login-options span,.login-options i {
+                    font-size: 14px;
+                }
+                .login-options {
+                    margin-top: 10px;
+             }
+            }
+            @media (max-width: 768px) {
+                .image-section {
+                    display: none;
+                }
+                .large-screen {
+                    display: none;
+                }
+                .small-screen {
+                    display: block;
+                    
+                    margin-top: 20px;
+                }
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <div class="form-section">
+                    <h1>Sign up</h1>
+                    <form id="myform">
+                        <div class="input-container">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="user" placeholder="Your Name">           
+                        </div>
+                        <div class="input-container">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="email" placeholder="Your Email">
+                        </div>
+                        <div class="input-container">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="pass" placeholder="Password">
+                        </div>
+                        <div class="input-container">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="repass" placeholder="Repeat Password">
+                            
+                        </div>
+                        <p class="terms"><input type="checkbox" id="check">I agree all statements in <a href="Terms.html" target="_blank">Terms of service</a></p>
+                        <button type="submit">Register</button>
+                        <p class="small-screen"><a href="signin.html">I am already member</a></p>
+                    </form>
+                    <p id="message" class="message"></p>
+                </div>
+                <div class="image-section">
+                    <img src="regimg.png"alt="registration_image">
+                    <p class="large-screen"><a href="signin.html">I am already member</a></p>
+                </div>
+            </div>
+            
+        
+        
+        </div>
+        
+        <script>
+            function isValidEmail(email){
+                const emailPattern=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return emailPattern.test(email);
+            }
+            function isStrongPassword(password){
+                const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+                return pattern.test(password);
+
+            }
+            function showMessage(text,type){
+                const messageEl=document.getElementById("message");
+                messageEl.textContent=text;
+                messageEl.className=`message ${type}`;
+                setTimeout(()=>{
+                    messageEl.textContent="";
+                    messageEl.className="message";
+                }, 3000);
+                }
+
+            document.getElementById("myform").addEventListener("submit", function (e){
+                e.preventDefault();
+                const username=document.getElementById("user").value.trim();
+                const email=document.getElementById("email").value.trim();
+                const password=document.getElementById("pass").value;
+                const confirmPass=document.getElementById("repass").value;
+                const agree=document.getElementById("check").checked;
+                if (username===""||email===""||password===""||confirmPass===""){
+                    showMessage("Fields are empty","error");
+                    return;
+                }
+                else if(password!=confirmPass){
+                    showMessage("Password Mismatch","error");
+                    return;
+                }
+                else if(!agree){
+                    showMessage("You must agree the terms and condition","error");
+                    return;
+                }
+                else if(!isValidEmail(email)){
+                    showMessage("Enter the Valid email","error");
+                    return;
+                }
+                else if(!isStrongPassword(password)){
+                    showMessage("Password must be 8+ characters with uppercase, lowercase, number & special character", "error");
+                    return;
+                }
+                const userData={
+                    username:username,
+                    email:email,
+                    password:password
+                };
+                localStorage.setItem("user",JSON.stringify(userData));
+                    showMessage("Registered successfully!Redirecting to Login","success");
+                    setTimeout(()=>{
+                        window.location.href="signin.html";
+                    },2000);
+                    
+                
+            });
+        
+
+            
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign In</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <style>
+            .container{
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                height:100vh;
+                padding:10px;
+                box-sizing:border-box;
+
+            }
+            .card{
+                max-width:700px;
+                min-height:400px;
+                width:100%;
+                margin:0 auto;
+                padding:20px 30px;
+                background-color:#f9f9f9;
+                border-radius:10px;
+                box-shadow:0 0 10px rgba(0, 0, 0, 0.385);
+                display:flex;
+                flex-direction:row;
+            }
+            .image-section{
+                flex:1;
+                display:flex;
+                flex-direction:column;
+                align-items:center;
+                justify-content:center;
+                padding-right:20px;
+            }
+            .image-section img{
+                width:100%;
+                max-width:300px;
+                height:auto;
+                margin-bottom:20px;
+            }
+            .form-section{
+                flex:1;
+                padding:20px;
+            }
+            .form-section h1{
+                color:black;
+                font-family: Arial;
+                margin-top:10px;
+                margin-bottom:20px;
+                font-size:24px;
+
+            }
+            
+            .remember{
+                font-size:14px;
+                margin:15px 0;
+                font-family:arial;
+                padding:5px 0 0;
+            }
+            .login-options span{
+                margin-bottom:10px;
+                
+            }
+            .login-options i{
+                margin:0 5px;
+                font-size:24px;
+                cursor:pointer;
+            }
+            .input-container{
+                display:flex;
+                align-items:center;
+                margin:20px 0;
+            }
+            .input-container input{
+                flex:1;
+            }
+            
+           
+            
+            input[type="email"],input[type="password"]{
+                width:100%;
+                border:none;
+                border-bottom:2px solid #ccc;
+                outline:none;
+                text-align:left;
+                background-color:transparent;
+                padding:10px;
+                font-size:16px;
+                font-family:arial;
+                
+            }
+            input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    -webkit-text-fill-color: #000 !important; /* or your text color */
+    transition: background-color 5000s ease-in-out 0s;
+}
+            button{
+                margin-top:10px;
+                background-color: #00a6ff;
+                border:none;
+                padding:12px;
+                border-radius:5px;
+                width:100px;
+                color:white;
+                cursor:pointer;
+                font-size:16px;
+                font-family:arial;
+                text-align:center;
+            }
+            .large-screen {
+                display: block;
+                font-family: arial;
+                font-size: 14px;
+                color:black;
+            }
+            .small-screen {
+                display: none;
+                margin-top: 15px;
+                font-family: arial;
+                font-size: 14px;
+            }
+            .message{
+                font-weight:bold;
+                padding:10px;
+                margin-bottom:10px;
+            }
+            .error{
+                color:red;
+            }
+            .success{
+                color:green;
+            }
+            @media (max-width:768px){
+                .card{
+                    flex-direction:column;
+                    align-items:center;
+                    text-align:center;
+                    padding:20px 15px;
+                }
+                .form-section{
+                    order:2;
+                    width:100%;
+                    padding:10px;
+                }
+                .image-section img {
+                    display: none;
+                }
+                .large-screen {
+                    display: none;
+                }
+                .small-screen {
+                    display: block;
+                }
+                input[type="email"], input[type="password"]{
+                    font-size:14px;
+                }
+                button{
+                    font-size:14px;
+                    display:flex;
+                    align-items:left;
+                    text-align:center;
+                }
+                .form-section h1{
+                    font-size:20px;
+                    text-align:left;
+                }
+                .remember{
+                font-size:14px;
+                margin:15px 0;
+                font-family:arial;
+                padding:5px 0 0;
+                text-align:left;
+            }
+        }
+                
+
+
+
+  
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <div class="image-section">
+                <img src="loginimg.png" alt="login-image">
+                <a href="register.html" class="large-screen">Create an account</a>
+            </div>
+            <div class="form-section">
+                <h1>Sign In</h1>
+        <form id="formId">
+            <div class="input-container">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="email" placeholder="Your Email"><br><br>
+            </div>
+            <div class="input-container">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="pass" placeholder="Password"></div>
+        
+        <p class="remember"><input type="checkbox" id="check"> Remember me</p>
+        <button type="submit">Login</button><br><br>
+        <div class="login-options">
+            <span>Or login with</span>
+            <i class="fa-brands fa-square-facebook" style="color: #01004d;"></i>
+            <i class="fa-brands fa-square-twitter" style="color: #0d92f8;"></i>
+            <i class="fa-brands fa-invision" style="color: #081836;"></i>
+        </div>
+        <a href="register.html" class="small-screen">Create an account</a>
+        
+        
+        </form>
+        <p id="message" class="message"></p>
+
+            </div>
+            </div>
+            
+        
+    </div>
+        
+        <script>
+            const emailInput=document.getElementById("email");
+            const passwordInput=document.getElementById("pass");
+            const rememberCheckbox=document.getElementById("check");
+            function showMessage(text,type){
+                const messageEl=document.getElementById("message");
+                messageEl.textContent=text;
+                messageEl.className=`message ${type}`;
+                setTimeout(()=>{
+                    messageEl.textContent="";
+                    messageEl.className="message";
+                },3000);
+
+            }
+            function isStrongPassword(password)
+            {
+                const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+                return pattern.test(password);
+            }
+            window.addEventListener("DOMContentLoaded",function(){
+                const rememberedEmail=localStorage.getItem("rememberedEmail");
+                if(rememberedEmail){
+                    emailInput.value=rememberedEmail;
+                    rememberCheckbox.checked=true;
+                }
+            });
+            document.getElementById("formId").addEventListener("submit", function (e){
+                e.preventDefault();
+                const email=emailInput.value.trim();
+                const password=passwordInput.value.trim();
+                const storedData=localStorage.getItem("user");
+                if (!storedData){
+                    showMessage("No user registered. Please create an account first","error");
+                    return;
+                }
+                const userData=JSON.parse(storedData);
+                if(email===userData.email&&password===userData.password){
+                    showMessage("Login Successful!","success");
+                    if(rememberCheckbox.checked){
+                    localStorage.setItem("rememberedEmail",email);
+                    }else{
+                        localStorage.removeItem("rememberedEmail");
+                     }
+                     setTimeout(()=>{
+                        alert("Redirecting to homepage...");
+                     },2000);
+                }else{
+                    showMessage("invalid Email or Password","error");
+                }
+            });
+        </script>
+    </body>
+</html>
